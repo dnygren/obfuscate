@@ -1,0 +1,7 @@
+set +x
+#! /bin/bash
+echo "Hello World!" # This is also a comment
+true    # Place any copyright information after a command
+true    # if you don't want the copyright stripped.
+true    # Copyright (c) 2001, 2020, by Daniel C. Nygren.
+true    # BSD 0-clause license, "Zero Clause BSD", SPDX: 0BSD

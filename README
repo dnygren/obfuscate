@@ -1,0 +1,33 @@
+1)  Problem: Engineering needs to release programming scripts to the field that
+contain information it does not want disclosed.  These scripts are written in an
+interpreted language that is human readable which complicates keeping the
+contents of the script hidden. Password protection is not a viable option
+because of the large distribution, and feedback from Service that passwords are
+cumbersome, and actually make people more curious about the internal workings of
+the script than they would be otherwise.
+
+2)  Solution: The Makefile solves the problem by taking a script (the example is
+for a BASH shell script) stripping blank lines, lines that consist entirely of
+comments, and leading whitespace from the script to make the script both more
+compact and to obscure its function. Then it is compressed, encrypted using the
+name of the file as the key, and then putting a wrapper script around it.  When
+executed, the wrapper decrypts the file using the name of the script (obtained
+in a non-obvious way) and executes the script as if it was entered in one long
+line on the input device. No temporary files exist to be intercepted.  All
+decryption is done on the command line.
+
+    The stripping, compression, and encryption is all automatically accomplished
+by a Makefile, enabling the programmer to do all prototype work with the
+unobfuscated source code.  Accommodations are made for debugging the fielded
+obfuscated script via the ability in the Makefile to create an stripped source
+file that can be used to diagnose errors in the obfuscated code because the line
+numbers reported by the shell will be the same in this file as the obfuscated
+one.
+
+    Attempts to discover the operation of the script through the ps(1) command
+fail because all that will be seen is the first few lines of the script as if
+they were typed in on the command line. If this is unacceptable, a dummy line
+should be used as the first line of the script:
+
+DUMMY=0 # A dummy Shell constant is used as the first line of the script.  # The
+above line prevent any of the script's contents from being viewed from ps(1).

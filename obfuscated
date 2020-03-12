@@ -1,0 +1,11 @@
+#! /bin/bash
+# Copyright (c) 2020, by Daniel C. Nygren.
+export script_name=$(/usr/bin/basename $0)
+/bin/bash -c "$(/bin/cat <<"END_OF_FILE" | /usr/bin/openssl enc -aes256 -a -d -k ${0##*/} | /bin/zcat
+U2FsdGVkX1913zaP3nQdkj0wkb1pXwad8eSEh+Q5TAe7P0vz3FPiWFa0LPC2fkUZ
+amKkXKpaWtYp2E8ZYDjTxASyDB7sr9qy/5T5Av/YfIJRgFCRLOoUU/0jrofOFXyP
+WFQ1RlFC5bTHyW8+mLUW4+qJVyssYeWha/eeM+EI0w7vZSWnXpeQcMf/pXftlnF5
+z6Dt65eMeC8xnwQKHw6B/arTnHj7+sB2WHUT1uLV8I0PScDI7Tym2dAX4PLJ4sjp
+z26KKD2wk+znmiXBPTwpslWohvIC9yKF9IobpH2DnMPYr6/yPDznBizsw/cdMl4Q
+END_OF_FILE
+)" -- "$@"
