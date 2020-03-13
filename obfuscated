@@ -2,10 +2,10 @@
 # Copyright (c) 2020, by Daniel C. Nygren.
 export script_name=$(/usr/bin/basename $0)
 /bin/bash -c "$(/bin/cat <<"END_OF_FILE" | /usr/bin/openssl enc -aes256 -a -d -k ${0##*/} | /bin/zcat
-U2FsdGVkX1913zaP3nQdkj0wkb1pXwad8eSEh+Q5TAe7P0vz3FPiWFa0LPC2fkUZ
-amKkXKpaWtYp2E8ZYDjTxASyDB7sr9qy/5T5Av/YfIJRgFCRLOoUU/0jrofOFXyP
-WFQ1RlFC5bTHyW8+mLUW4+qJVyssYeWha/eeM+EI0w7vZSWnXpeQcMf/pXftlnF5
-z6Dt65eMeC8xnwQKHw6B/arTnHj7+sB2WHUT1uLV8I0PScDI7Tym2dAX4PLJ4sjp
-z26KKD2wk+znmiXBPTwpslWohvIC9yKF9IobpH2DnMPYr6/yPDznBizsw/cdMl4Q
+U2FsdGVkX18hG08k59KOv69Kmu2p/Yoe+78KUyUftYqLF7NpX6w+KaDCjkc0vSgz
+QtaHmQDt53PJXXGRQT/czwRaYveniadKfpgQL6dJlcgLuOyXMmDTECJ5g0OGc9Bd
+x0u/ENr/M2O3z18UQcyUWF+c2MKgIiO4QPNk3mb1HN0q0mhz57Kkn/6Qxk2zEVsV
+1r/Smv6+zjd0GeIniH1zE0lXQgRuBhnWh6orG0Z77/QrbOoCN3vGfPCm+s0VOVSQ
+AKs1RgVmoS7qXaV3X5gKiBiPbGA/8KZl5P753g5K5g15R5i5dHkzt/elAL8ULfOJ
 END_OF_FILE
 )" -- "$@"

@@ -124,6 +124,8 @@ $(TARGET) : $(SOURCE)
 	-e "\$$a\\" -e 'END_OF_FILE' \
 	-e "\$$a\\" -e ')" -- "\$$@"' >| $@
 	/bin/chmod a+x $@
+	@echo "*** Rename $(TARGET) to encrypt the script. ***"
+	@echo "*** Change the name back to $(TARGET) to allow execution. ***"
 
 # *** Phony Rules ****
 

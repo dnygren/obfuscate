@@ -36,3 +36,32 @@ should be used as the first line of the script:
 
 DUMMY=0 # A dummy Shell constant is used as the first line of the script.
 # The above prevents any of the script's contents from being viewed from ps(1).
+
+3) Example:
+
+$ make
+sed -e '/^$/d' \
+-e 's/^[ \t]*//' \
+-e 's/[ \t]*$//' \
+-e '/^\s*#\([^!]\|$\)/d' demo.sh | \
+sed -e "1i\\" -e 'set +x' | \
+/bin/gzip -c  | \
+/usr/bin/openssl enc -aes256 -a -k obfuscated | \
+sed -e "1i\\" -e "#! /bin/bash" \
+-e "1i\\" -e '# Copyright (c) 2020, by Daniel C. Nygren.' \
+-e "1i\\" -e 'export script_name=\$(/usr/bin/basename \$0)' \
+-e "1i\\" -e '/bin/bash -c "\$(/bin/cat <<"END_OF_FILE" | /usr/bin/openssl enc -aes256 -a -d -k \${0##*/} | /bin/zcat' -e "\$a\\" -e 'END_OF_FILE' -e "\$a\\" -e ')" -- "\$@"' >| obfuscated
+/bin/chmod a+x obfuscated
+*** Rename obfuscated to encrypt the script. ***
+*** Change the name back to obfuscated to allow execution. ***
+$ ./obfuscated
+Hello World!
+$ mv obfuscated encrypted
+$ ./encrypted
+bad decrypt
+140277545001024:error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt:../crypto/evp/evp_enc.c:536:
+
+gzip: stdin: not in gzip format
+$ mv encrypted obfuscated
+$ ./obfuscated
+Hello World!
