@@ -1,3 +1,6 @@
+obfuscate shell scripts README                          D. Nygren 15 May 2020
+--------------------------------------------------------------------------------
+
 1)  Problem: Engineering needs to release programming scripts to the field that
 contain information it does not want disclosed. These scripts are written in an
 interpreted language that is human readable which complicates keeping the
